@@ -43,8 +43,8 @@ RUN cd ${WILDFLY_DIR_TEMP} \
     && curl -O https://download.jboss.org/wildfly/$WILDFLY_VERSION/wildfly-$WILDFLY_VERSION.tar.gz \
     && tar xf wildfly-$WILDFLY_VERSION.tar.gz
 
-ADD wars/postgresql-9.4.1208.jre7.jar ${WILDFLY_DIR_TEMP}/wildfly-$WILDFLY_VERSION/standalone/deployments/postgresql-9.4.1208.jre7.jar
-ADD confs/create_infinity_datasources.cli ${WILDFLY_DIR_TEMP}/wildfly-$WILDFLY_VERSION/bin/create_infinity_datasources.cli
+COPY wars/*.jar ${WILDFLY_DIR_TEMP}/wildfly-$WILDFLY_VERSION/standalone/deployments/
+#ADD confs/create_infinity_datasources.cli ${WILDFLY_DIR_TEMP}/wildfly-$WILDFLY_VERSION/bin/create_infinity_datasources.cli
 ADD confs/standalone.conf ${WILDFLY_DIR_TEMP}/wildfly-$WILDFLY_VERSION/bin/standalone.conf
 
 RUN set -ex \
