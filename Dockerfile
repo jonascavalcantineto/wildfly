@@ -74,7 +74,7 @@ RUN chmod +x /start-wildfly.sh
 ADD confs/start.sh /start.sh
 RUN chmod +x /start.sh
 
-USER wildfly
+#USER wildfly
 
 # Start Supervisord
 CMD ["/start.sh"]
