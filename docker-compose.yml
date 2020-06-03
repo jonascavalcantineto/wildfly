@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+        wildfly:
+                build: .
+                image: wildfly
+                restart: always
+                container_name: wildfly
+                hostname: wildfly
+                network_mode: "bridge"
+                ports: 
+                        - 8080:8080
+                        - 9990:9990
+                        - 9999:9999
+                # volumes:
+                #         - /infinity-data/wildfly/application:/opt/wildfly-10.0.0.Final
+        

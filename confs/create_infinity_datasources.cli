@@ -1,0 +1,36 @@
+connect
+batch
+
+#Comando para ADD modulo manualmente
+#/subsystem=datasources/jdbc-driver=postgres:add(driver-name="postgresql-9.4.1208.jre7.jar",driver-module-name="org.postgres",driver-class-name=org.postgresql.dev.Driver)
+
+#DataSource CORE
+data-source add --jndi-name=java:jboss/datasources/core-ds --name=coreDS --connection-url=jdbc:postgresql://postgresql.infinitylabs.com.br:5432/infinitylabs_core --driver-name=postgresql-9.4.1208.jre7.jar --user-name=postgres --password=postgres
+/subsystem=datasources/data-source=coreDS/:write-attribute(name=max-pool-size,value=50)
+/subsystem=datasources/data-source=coreDS/:write-attribute(name=max-pool-size,value=10)
+
+#DataSource COREDEV
+data-source add --jndi-name=java:jboss/datasources/core-ds --name=coreDS --connection-url=jdbc:postgresql://postgresql.dev.infinitylabs.com.br:5432/infinitylabs_core --driver-name=postgresql-9.4.1208.jre7.jar --user-name=postgres --password=postgres
+/subsystem=datasources/data-source=coreDS/:write-attribute(name=max-pool-size,value=50)
+/subsystem=datasources/data-source=coreDS/:write-attribute(name=max-pool-size,value=10)
+
+#DataSource SOPAI
+data-source add --jndi-name=java:jboss/datasources/sopai-ds --name=sopaiDS --connection-url=jdbc:postgresql://postgresql.infinitylabs.com.br:5432/infinitylabs_sopai --driver-name=postgresql-9.4.1208.jre7.jar --user-name=postgres --password=postgres
+/subsystem=datasources/data-source=sopaiDS/:write-attribute(name=max-pool-size,value=50)
+/subsystem=datasources/data-source=sopaiDS/:write-attribute(name=max-pool-size,value=10)
+
+#DataSource SOPAI
+data-source add --jndi-name=java:jboss/datasources/sopai-ds --name=sopaiDS --connection-url=jdbc:postgresql://postgresql.dev.infinitylabs.com.br:5432/infinitylabs_sopai --driver-name=postgresql-9.4.1208.jre7.jar --user-name=postgres --password=postgres
+/subsystem=datasources/data-source=sopaiDS/:write-attribute(name=max-pool-size,value=50)
+/subsystem=datasources/data-source=sopaiDS/:write-attribute(name=max-pool-size,value=10)
+
+#DataSource Movimento Integral
+data-source add --jndi-name=java:jboss/datasources/movimentointegral-ds --name=movimentointegralDS --connection-url=jdbc:postgresql://postgresql.infinitylabs.com.br:5432/movimentointegral --driver-name=postgresql-9.4.1208.jre7.jar --user-name=postgres --password=postgres
+/subsystem=datasources/data-source=movimentointegralDS/:write-attribute(name=max-pool-size,value=50)
+/subsystem=datasources/data-source=movimentointegralDS/:write-attribute(name=max-pool-size,value=10)
+
+# Execute and reload
+run-batch
+:reload
+
+#COMANDO: bin/jboss-cli.sh --file=create_infinity_datasources.cli
